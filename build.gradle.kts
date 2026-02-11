@@ -40,9 +40,15 @@ jib {
 		// GitHub Actions 등 CI 환경에서 ECR_URL이 주입되면 해당 리포지토리로 설정
 		// 로컬 환경에서는 ECR_URL이 없으므로 "ekssampleboot" (로컬 도커용 이름) 사용
 		val ecrUrl = System.getenv("ECR_URL")
+		val imageTag = System.getenv("IMAGE_TAG")
+
 		if (ecrUrl != null) {
 			image = "$ecrUrl/ekssampleboot"
-			tags = setOf("latest", "${project.version}")
+			if (!imageTag.isNullOrEmpty()) {
+				tags = setOf(imageTag)
+			} else {
+				tags = setOf("latest", "${project.version}")
+			}
 		} else {
 			image = "ekssampleboot"
 			tags = setOf("latest", "local")
