@@ -34,7 +34,7 @@ dependencies {
 
 jib {
 	from {
-		image = "amazoncorretto:17-alpine-jdk"
+		image = "public.ecr.aws/amazoncorretto/amazoncorretto:17"
 	}
 	to {
 		// GitHub Actions 등 CI 환경에서 ECR_URL이 주입되면 해당 리포지토리로 설정

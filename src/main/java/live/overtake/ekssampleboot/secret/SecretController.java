@@ -19,20 +19,22 @@ public class SecretController {
             .build();
 
     @GetMapping("/")
-    public String home(){
+    public String home() {
         return "Hello World! (Pod Identity Demo)";
     }
 
     @GetMapping("/secret")
-    public Map<String,Object> getSecret(){
+    public Map<String, Object> getSecret() {
         try {
             // 1. Secrets Manager에서 "ekssampleboot/secret" 값을 조회
-            GetSecretValueResponse response = client.getSecretValue(builder -> builder.secretId("ekssampleboot/secret"));
+            GetSecretValueResponse response = client
+                    .getSecretValue(builder -> builder.secretId("overtake-springbootsample/secret"));
 
             // 2. JSON 문자열 파싱 (Secrets Manager는 기본적으로 JSON String형태로 저장됨)
             // 예: "{\"secret\":\"Decrypted_Secret_Value_1234\"}" -> Map 변환
             String secretJson = response.secretString();
-            Map<String, Object> secretMap = objectMapper.readValue(secretJson, new TypeReference<>() {});
+            Map<String, Object> secretMap = objectMapper.readValue(secretJson, new TypeReference<>() {
+            });
 
             return Map.of("message", "OK", "secret_data", secretMap);
         } catch (Exception e) {
