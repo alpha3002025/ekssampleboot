@@ -7,10 +7,10 @@ on:
         description: 'Docker create Tag Name'
         required: true
         default: 'latest'
-      git_ref:
-        description: 'Git Ref (Branch, Tag, SHA) to build'
-        required: false
-        default: 'main'
+      # git_ref:
+      #   description: 'Git Ref (Branch, Tag, SHA) to build'
+      #   required: false
+      #   default: 'main'
 
 jobs:
   build-and-push:
