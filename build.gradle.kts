@@ -43,7 +43,7 @@ jib {
 		val imageTag = System.getenv("IMAGE_TAG")
 
 		if (ecrUrl != null) {
-			image = "$ecrUrl/ekssampleboot"
+			image = "$ecrUrl/overtake-springbootsample"
 			if (!imageTag.isNullOrEmpty()) {
 				tags = setOf(imageTag)
 			} else {
